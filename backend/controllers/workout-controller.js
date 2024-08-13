@@ -4,12 +4,13 @@ const Workout = require('../models/workout-model');
 //get all workouts
 
 const getWorkouts = async (req,res)=>{
-    
-    const workouts = await Workout.find({}).sort({createdAt:-1});
+
+    const user_id = req.user._id;    
+    const workouts = await Workout.find({user_id}).sort({createdAt:-1});
     res.status(200).json(workouts);
 }
 
-
+ 
 //get a single workout
 
 const getWorkout = async (req,res) =>{
@@ -34,6 +35,7 @@ const getWorkout = async (req,res) =>{
 
 const createWorkout = async (req,res)=>{
     const {title,reps,load} = req.body;
+    
 
     let emptyFields = [];
 
@@ -46,7 +48,8 @@ const createWorkout = async (req,res)=>{
     }
 
     try {
-        const workout = await Workout.create({title,reps,load});
+        const user_id = req.user._id;
+        const workout = await Workout.create({title,reps,load , user_id});
         return res.status(200).json(workout);
 
     } catch (error) {

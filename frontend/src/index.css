@@ -100,3 +100,82 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+nav button {
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  cursor: pointer;
+  font-size: 1em;
+  margin-left:10px;
+}
+
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .home {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  nav button {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .workout-details h4 {
+    font-size: 1em;
+  }
+
+  .workout-details p {
+    font-size: 0.8em;
+  }
+
+  form.signup,
+  form.login {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+}

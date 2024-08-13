@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
+  const {user} = useAuthContext();
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(workout.title);
   const [load, setLoad] = useState(workout.load);
   const [reps, setReps] = useState(workout.reps);
   const [error, setError] = useState(null);
 
+  console.log("CreatedAt:", workout.createdAt);
+
   const handleClick = async () => {
+
+    if(!user){
+      return
+    }
     const confirmDelete = window.confirm("Do you really want to delete this workout?");
     
     if (confirmDelete) {
       const response = await fetch('/api/workouts/' + workout._id, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers:{
+          'Authorization':`Bearer ${user.token}`
+        }
       });
   
       const json = await response.json();
@@ -27,14 +38,19 @@ const WorkoutDetails = ({ workout }) => {
   };
 
   const handleEdit = async (e) => {
-    // e.preventDefault();
+    if(!user){
+      return
+    }
+
+    e.preventDefault();
 
     const updatedWorkout = { title, load, reps };
     const response = await fetch('/api/workouts/' + workout._id, {
       method: 'PUT',
       body: JSON.stringify(updatedWorkout),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization':`Bearer ${user.token}`
       }
     });
 

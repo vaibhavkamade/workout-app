@@ -22,7 +22,7 @@ const WorkoutDetails = ({ workout }) => {
     const confirmDelete = window.confirm("Do you really want to delete this workout?");
     
     if (confirmDelete) {
-      const response = await fetch('https://workout-app-dxm8.onrender.com/api/workouts/' + workout._id, {
+      const response = await fetch('https://workout-app-qcx1.onrender.com/api/workouts/' + workout._id, {
         method: 'DELETE',
         headers:{
           'Authorization':`Bearer ${user.token}`
@@ -45,7 +45,7 @@ const WorkoutDetails = ({ workout }) => {
     e.preventDefault();
 
     const updatedWorkout = { title, load, reps };
-    const response = await fetch('https://workout-app-dxm8.onrender.com/api/workouts/' + workout._id, {
+    const response = await fetch('https://workout-app-qcx1.onrender.com/api/workouts/' + workout._id, {
       method: 'PUT',
       body: JSON.stringify(updatedWorkout),
       headers: {

@@ -22,7 +22,7 @@ const WorkoutForm = () => {
 
     const workout = {title, reps, load}
     
-    const response = await fetch('https://workout-app-dxm8.onrender.com/api/workouts', {
+    const response = await fetch('https://workout-app-qcx1.onrender.com/api/workouts', {
       method: 'POST',
       body: JSON.stringify(workout),
       headers: {

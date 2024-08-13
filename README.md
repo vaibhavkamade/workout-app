@@ -8,3 +8,4 @@ cd backend
 nodemon server.js
 
 
+live preview - https://workout-app-three-navy.vercel.app/
